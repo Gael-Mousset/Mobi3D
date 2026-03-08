@@ -34,7 +34,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     priceRef: 1200,
     salesCount: 47,
     polygons: 47412,
-    color: '#2d8a4e',
+    color: '#2e2e2e',
   },
   {
     id: '2',
@@ -53,7 +53,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     priceRef: 850,
     salesCount: 31,
     polygons: 12840,
-    color: '#4a6fa5',
+    color: '#dedad6',
   },
   {
     id: '3',
@@ -72,7 +72,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     priceRef: 2400,
     salesCount: 18,
     polygons: 8920,
-    color: '#8b6914',
+    color: '#a87848',
   },
   {
     id: '4',
@@ -91,7 +91,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     priceRef: 650,
     salesCount: 22,
     polygons: 6200,
-    color: '#5b7b9d',
+    color: '#e0deda',
   },
   {
     id: '5',
@@ -110,7 +110,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     priceRef: 1550,
     salesCount: 63,
     polygons: 52100,
-    color: '#1a2a3a',
+    color: '#2a2a2a',
   },
   {
     id: '6',
@@ -129,7 +129,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     priceRef: 320,
     salesCount: 55,
     polygons: 4100,
-    color: '#6b8db2',
+    color: '#b8b5b0',
   },
   {
     id: '7',
@@ -148,7 +148,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     priceRef: 700,
     salesCount: 12,
     polygons: 9800,
-    color: '#4682b4',
+    color: '#dedad6',
   },
   {
     id: '8',
@@ -167,6 +167,6 @@ export const MOCK_FURNITURE: Furniture[] = [
     priceRef: 480,
     salesCount: 28,
     polygons: 5600,
-    color: '#3a5a3a',
+    color: '#c8b492',
   },
 ];
