@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, RotateCw, Search, Target, Package, Upload, Download } from 'lucide-react';
 import Stepper from '@/components/ui/Stepper';
@@ -18,7 +18,18 @@ export default function ScannerPage({ user }: Props) {
     material: 'Noir / tissu mesh', state: 'A', notes: '',
   });
   const [progress, setProgress] = useState({ keys: 0, align: 0, mesh: 0, tex: 0 });
+  const [images, setImages] = useState<string[]>([]);
+  const [dragging, setDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const stepLabels = ['Photos', 'Métadonnées', 'Traitement 3D', 'Fiche prête'];
+
+  const addFiles = (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    const urls = Array.from(files)
+      .filter((f) => f.type.startsWith('image/'))
+      .map((f) => URL.createObjectURL(f));
+    setImages((prev) => [...prev, ...urls]);
+  };
 
   const startProcessing = () => {
     setStep(2);
@@ -54,20 +65,53 @@ export default function ScannerPage({ user }: Props) {
       {/* STEP 0: Photos */}
       {step === 0 && (
         <div>
-          <div className="rounded-2xl border-2 border-dashed border-gray-200 bg-white text-center py-16 px-10 mb-6">
-            <div className="mb-4 opacity-30 flex justify-center">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="1"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <div
+            onClick={() => fileInputRef.current?.click()}
+            onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+            onDragLeave={() => setDragging(false)}
+            onDrop={(e) => { e.preventDefault(); setDragging(false); addFiles(e.dataTransfer.files); }}
+            className={`rounded-2xl border-2 border-dashed text-center py-16 px-10 mb-6 cursor-pointer transition-colors
+              ${dragging ? 'border-brand bg-brand-light' : 'border-gray-200 bg-white hover:border-brand/40'}`}
+          >
+            <div className="mb-4 flex justify-center" style={{ opacity: dragging ? 0.8 : 0.3 }}>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#004AAD" strokeWidth="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
             </div>
             <h3 className="text-xl font-bold mb-2 text-gray-900">Déposez vos photos ici</h3>
             <p className="text-[13px] text-gray-400 leading-relaxed">
-              Prenez 20–40 photos en tournant autour du meuble<br />Format JPG, PNG · Max 10 Mo par photo
+              Prenez 20–40 photos en tournant autour du meuble<br />Format JPG, PNG, WebP · Max 10 Mo par photo
             </p>
-            <button className="btn-brand mt-5 uppercase tracking-wider text-[13px]">Sélectionner des photos</button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              multiple
+              accept="image/jpeg,image/png,image/webp"
+              className="hidden"
+              onChange={(e) => { addFiles(e.target.files); e.target.value = ''; }}
+            />
+            <button
+              onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
+              className="btn-brand mt-5 uppercase tracking-wider text-[13px]"
+            >
+              Sélectionner des photos
+            </button>
           </div>
+          {images.length > 0 && (
+            <p className="text-[11px] text-gray-400 mb-2">{images.length} photo{images.length > 1 ? 's' : ''} sélectionnée{images.length > 1 ? 's' : ''}</p>
+          )}
           <div className="flex gap-2.5 flex-wrap mb-8">
-            {[200, 220, 180, 210, 240, 195, 215, 230].map((l, i) => (
-              <div key={i} className="w-[100px] h-[100px] rounded-xl border border-gray-200 flex items-center justify-center" style={{ background: `hsl(215, 20%, ${l / 3}%)` }}>
-                <span className="text-[28px] opacity-30">🪑</span>
+            {images.map((src, i) => (
+              <div key={i} className="relative group w-[100px] h-[100px]">
+                <div className="w-full h-full rounded-xl border border-gray-200 overflow-hidden">
+                  <img src={src} alt={`photo-${i}`} className="w-full h-full object-cover" />
+                </div>
+                <button
+                  onClick={() => setImages((prev) => prev.filter((_, idx) => idx !== i))}
+                  className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-white border border-gray-200
+                             text-red-400 text-[11px] font-bold hidden group-hover:flex items-center justify-center
+                             cursor-pointer hover:bg-red-500 hover:text-white transition-colors"
+                >
+                  ✕
+                </button>
               </div>
             ))}
           </div>
