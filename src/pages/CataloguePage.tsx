@@ -39,12 +39,20 @@ export default function CataloguePage() {
           <div key={item.id} onClick={() => navigate('/viewer', { state: { furniture: item } })}
             className="card overflow-hidden cursor-pointer group"
           >
-            <div className="h-[140px] flex items-center justify-center relative" style={{ background: `linear-gradient(135deg, ${item.color}15, ${item.color}05)` }}>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-gray-400" style={{ background: item.color + '20' }}>
-                <Box size={18} />
-              </div>
-              <div className="absolute top-3 right-3"><StateBadge stateKey={item.state} /></div>
-            </div>
+            <div
+  className="h-[140px] relative overflow-hidden flex items-center justify-center"
+  style={{ background: `linear-gradient(135deg, ${item.color}15, ${item.color}05)` }}
+>
+  <img
+    src={`/models/${item.images?.[0] ?? "chair.jpg"}`}
+    className="w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-110"
+    alt={item.name}
+  />
+
+  <div className="absolute top-3 right-3">
+    <StateBadge stateKey={item.state} />
+  </div>
+</div>
             <div className="p-4">
               <div className="text-[11px] text-brand font-semibold uppercase tracking-wider mb-1">{item.category}</div>
               <div className="text-sm font-bold text-gray-900 mb-2">{item.name}</div>
@@ -52,7 +60,7 @@ export default function CataloguePage() {
               <div className="text-[11px] text-gray-400">{item.dimensions.w} × {item.dimensions.h} × {item.dimensions.d} cm · {item.brand}</div>
               <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
                 <span className="text-lg font-extrabold text-brand font-mono">{item.price} €</span>
-                <span className="text-[11px] text-gray-400">{item.quantity} dispo.</span>
+                <span className="text-[13px] font-bold text-gray-400">{item.quantity} dispo.</span>
               </div>
             </div>
           </div>

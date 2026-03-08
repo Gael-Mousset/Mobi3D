@@ -35,6 +35,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     salesCount: 47,
     polygons: 47412,
     color: '#2e2e2e',
+    images: ["/furniture/chair.jpg"],
   },
   {
     id: '2',
@@ -54,6 +55,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     salesCount: 31,
     polygons: 12840,
     color: '#dedad6',
+    images: ["/furniture/desk.jpg"],
   },
   {
     id: '3',
@@ -73,6 +75,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     salesCount: 18,
     polygons: 8920,
     color: '#a87848',
+    images: ["/furniture/table.jpg"],
   },
   {
     id: '4',
@@ -92,6 +95,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     salesCount: 22,
     polygons: 6200,
     color: '#e0deda',
+    images: ["/furniture/cabinet.jpg"],
   },
   {
     id: '5',
@@ -111,6 +115,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     salesCount: 63,
     polygons: 52100,
     color: '#2a2a2a',
+    images: ["/furniture/chair.jpg"],
   },
   {
     id: '6',
@@ -130,6 +135,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     salesCount: 55,
     polygons: 4100,
     color: '#b8b5b0',
+    images: ["/furniture/cabinet.jpg"],
   },
   {
     id: '7',
@@ -149,6 +155,7 @@ export const MOCK_FURNITURE: Furniture[] = [
     salesCount: 12,
     polygons: 9800,
     color: '#dedad6',
+    images: ["/furniture/chair.jpg"],
   },
   {
     id: '8',
@@ -168,5 +175,6 @@ export const MOCK_FURNITURE: Furniture[] = [
     salesCount: 28,
     polygons: 5600,
     color: '#c8b492',
+    images: ["/furniture/cabinet.jpg"],
   },
 ];
