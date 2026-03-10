@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  front:
+    container_name: front-mobi3d
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "8087:80"
+    restart: always
+    networks:
+      - mobi3d_network
+      - nginx-proxy-manager_default
+    healthcheck:
+      # If served by nginx, checking “/” is typically fine
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:8080/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+networks:
+  mobi3d_network:
+  nginx-proxy-manager_default:
+    external: true
