@@ -1,5 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="6" fill="#c8e630"/>
-  <path d="M16 6L22 10v6l-6 4-6-4v-6l6-4z" stroke="#0a0a0a" stroke-width="2" fill="none"/>
-  <path d="M10 10l6 4 6-4M16 14v8" stroke="#0a0a0a" stroke-width="2"/>
+<!-- sample rectangle -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" data-abp-filters-channel="87230dd4-8c09-4cbe-a3cb-42d5adada7b5" data-ab-filters-channel="3aa52096-0b2f-435e-a56d-d102ee61ff8c"><script xmlns="" id="pphgdbgldlmicfdkhondlafkiomnelnk"/><script xmlns=""/><script xmlns=""/>
+  <rect width="32" height="32" rx="6" fill="#004AAD"/>
+  <path d="M16 6l8 4.6v9.2L16 24.4 8 19.8v-9.2L16 6z" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="M8 10.6L16 15.2 24 10.6" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linejoin="round"/>
+  <line x1="16" y1="15.2" x2="16" y2="24.4" stroke="#ffffff" stroke-width="2.2"/>
 </svg>
